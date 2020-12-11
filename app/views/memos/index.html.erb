@@ -1,0 +1,22 @@
+<h1>メモ一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>タイトル</td>
+      <td>内容</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td><%= memo.title %></td>
+        <td><%= memo.content %></td>
+        <td><%= link_to '編集', edit_memo_path(memo) %></td>
+        <td><%= link_to '削除', memo_path(memo), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '追加', new_memo_path %>
