@@ -23,6 +23,12 @@ class MemosController < ApplicationController
     redirect_to memos_path
   end
 
+  def destroy
+    @memo = Memo.find(params[:id])
+    @memo.destroy
+    redirect_to memos_path
+  end
+
 
   private
 
