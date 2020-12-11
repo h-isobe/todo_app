@@ -1,0 +1,11 @@
+<h1>メモ編集</h1>
+
+<%= form_with model: @memo do |f| %>
+  <div><%= f.label :title %></div>
+  <div><%= f.text_field :title %></div>
+  <div><%= f.label :content %></div>
+  <div><%= f.text_area :content %></div>
+  <div><%= f.submit '編集' %></div>
+<% end %>
+
+<%= link_to '戻る', memos_path %>
