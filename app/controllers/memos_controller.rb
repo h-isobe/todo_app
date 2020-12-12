@@ -2,6 +2,8 @@ class MemosController < ApplicationController
 
   def index
     @memos = Memo.all
+    @folders = Folder.all.order(id: "DESC")
+    @folder = Folder.new
   end
 
   def new

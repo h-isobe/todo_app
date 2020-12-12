@@ -1,3 +1,29 @@
+<h1>フォルダ一覧</h1>
+
+<table class="tabel">
+  <tbody>
+    <% @folders.each do |folder| %>
+      <tr>
+        <td>
+          <%= link_to %>
+          <%= folder.title %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%#= link_to "新規フォルダ", new_folder_path %>
+
+<%= form_with model: @folder do |f| %>
+  <%= f.label :フォルダ名 %>
+  <%= f.text_field :title %>
+  <%= f.submit "作成" %>
+<% end %>
+
+
+
 <h1>メモ一覧</h1>
 
 <table class="table">

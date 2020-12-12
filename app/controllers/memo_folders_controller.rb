@@ -1,0 +1,2 @@
+class MemoFoldersController < ApplicationController
+end
