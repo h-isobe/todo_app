@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <td></td>
       <td>タイトル</td>
       <td>内容</td>
     </tr>
@@ -10,6 +11,17 @@
   <tbody>
     <% @memos.each do |memo| %>
       <tr>
+        <td>
+          <% if memo.checked_by?(memo) %>
+            <%= link_to memo_checks_path(memo), method: :delete do %>
+              <i class="far fa-check-square"></i>
+            <% end %>
+          <% else %>
+            <%= link_to memo_checks_path(memo), method: :post do %>
+              <i class="far fa-square"></i>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= memo.title %></td>
         <td><%= memo.content %></td>
         <td><%= link_to '編集', edit_memo_path(memo) %></td>
