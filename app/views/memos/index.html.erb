@@ -5,7 +5,7 @@
     <% @folders.each do |folder| %>
       <tr>
         <td>
-          <%= link_to %>
+          <i class="fas fa-tag"></i>
           <%= folder.title %>
         </td>
       </tr>
@@ -13,11 +13,8 @@
   </tbody>
 </table>
 
-
-<%#= link_to "新規フォルダ", new_folder_path %>
-
 <%= form_with model: @folder do |f| %>
-  <%= f.label :フォルダ名 %>
+  <%= f.label :新規フォルダ %>
   <%= f.text_field :title %>
   <%= f.submit "作成" %>
 <% end %>
@@ -51,7 +48,7 @@
         <td><%= memo.title %></td>
         <td><%= memo.content %></td>
         <td><%= link_to '編集', edit_memo_path(memo) %></td>
-        <td><%= link_to '削除', memo_path(memo), method: :delete %></td>
+        <td><%= link_to '削除', memo_path(memo), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
       </tr>
     <% end %>
   </tbody>
