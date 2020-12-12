@@ -15,3 +15,13 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+.folder-list {
+  background-color:#DDDDDD;
+  height: 100vh;
+}
+
+.new-memo {
+  position: absolute;
+  bottom: 20px;
+}

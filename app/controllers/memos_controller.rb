@@ -6,6 +6,13 @@ class MemosController < ApplicationController
     @folder = Folder.new
   end
 
+  def show
+    @memos = Memo.all
+    @memo = Memo.find(params[:id])
+    @folders = Folder.all.order(id: "DESC")
+    @folder = Folder.new
+  end
+
   def new
     @memo = Memo.new
   end
