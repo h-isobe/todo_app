@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_004418) do
+ActiveRecord::Schema.define(version: 2020_12_12_030233) do
 
   create_table "checks", force: :cascade do |t|
     t.integer "memo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memo_folders", force: :cascade do |t|
+    t.integer "memo_id"
+    t.integer "folder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
