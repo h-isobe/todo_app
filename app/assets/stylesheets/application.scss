@@ -16,6 +16,17 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+body {
+  background-color: #F5F5F5	;
+}
+.top-title {
+  text-align: center;
+  font-size: 50px;
+  background-color: #EEEEEE	;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
 .folder-list {
   background-color:#DDDDDD;
   height: 100vh;
@@ -24,4 +35,8 @@
 .new-memo {
   position: absolute;
   bottom: 20px;
+}
+
+.edit_icon {
+  padding-right: 20px;
 }

@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-xs-2 folder-list">
-      <h1>フォルダ一覧</h1>
+      <h1>フォルダ</h1>
 
       <table class="tabel">
         <tbody>
@@ -27,8 +27,8 @@
       
     </div>
 
-    <div class="col-xs-3">
-      <h1>メモ一覧</h1>
+    <div class="col-xs-4">
+      <h1>メモ</h1>
 
       <table class="table">
         <thead>
@@ -52,7 +52,7 @@
                 <% end %>
               <% end %>
             </td>
-            <td><%= memo.title %></td>
+            <td><%= memo.title.truncate(10) %></td>
             <td>
               <%= link_to memo_path(memo) do %>
                 <%= memo.content.truncate(20) %>
@@ -68,13 +68,16 @@
       <% end %>
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-5">
 
-      <h1>メモ詳細</h1>
+      <h1>詳細</h1>
         <table class="table">
           <thead>
+            <p class="text-center"><%= l @memo.created_at %></p>
             <tr>
-              <td><%= @memo.title %></td>
+              <td>
+                <h4><strong><%= @memo.title %></strong></h4>
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -83,8 +86,23 @@
             </tr>
           </tbody>
         </table>
-
-      <%= link_to "戻る", memos_path %>
+        
+        <div class="text-right">
+          <span class="edit_icon">
+            <%= link_to edit_memo_path(@memo) do %>
+              <i class="fas fa-pencil-alt"></i>
+            <% end %>
+          </span>
+          <span class="delete-icon">
+            <%= link_to memo_path(@memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          </span>
+        </div>
+        
+        <div class="back_button text-left">
+          <%= link_to "戻る", memos_path %>
+        </div>
     </div>
 
   </div>

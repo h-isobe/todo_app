@@ -3,7 +3,7 @@
 
     
     <div class="col-xs-4 folder-list">
-      <h1>フォルダ一覧</h1>
+      <h2 class="text-center">フォルダ</h2>
 
       <table class="tabel">
         <tbody>
@@ -30,14 +30,14 @@
 
 
     <div class="col-xs-8">
-      <h1>メモ一覧</h1>
+      <h2 class="text-center">メモ</h2>
 
       <table class="table">
         <thead>
           <tr>
             <td></td>
-            <td>タイトル</td>
-            <td>内容</td>
+            <td><strong>タイトル</strong></td>
+            <td><strong>内容</strong></td>
           </tr>
         </thead>
         <tbody>
@@ -54,14 +54,25 @@
                 <% end %>
               <% end %>
             </td>
-            <td><%= memo.title %></td>
+            <td>
+              <strong><%= memo.title.truncate(20) %></strong><br>
+              <%= memo.created_at %>
+            </td>
             <td>
               <%= link_to memo_path(memo) do %>
                 <%= memo.content.truncate(20) %>
               <% end %>
             </td>
-            <td><%= link_to '編集', edit_memo_path(memo) %></td>
-            <td><%= link_to '削除', memo_path(memo), method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+            <td>
+              <%= link_to edit_memo_path(memo) do %>
+                <i class="fas fa-pencil-alt"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to memo_path(memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         </tbody>
