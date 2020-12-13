@@ -15,6 +15,12 @@ class FoldersController < ApplicationController
     redirect_to memos_path
   end
 
+  def destroy
+    @folder = Folder.find(params[:id])
+    @folder.destroy
+    redirect_to memos_path
+  end
+
   private
 
   def folder_params
