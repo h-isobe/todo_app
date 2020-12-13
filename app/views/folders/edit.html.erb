@@ -1,0 +1,9 @@
+<h1>フォルダ編集</h1>
+
+<%= form_with model: @folder do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit '変更' %>
+<% end %>
+
+<%= link_to '戻る', :back %>
