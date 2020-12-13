@@ -3,10 +3,16 @@
 
     
     <div class="col-xs-4 folder-list">
-      <h2 class="text-center">フォルダ</h2>
 
       <table class="tabel">
         <tbody>
+          <div class="new-folder text-center">
+            <%= form_with model: @folder do |f| %>
+              <%= f.label :新規フォルダ %>
+              <%= f.text_field :title %>
+              <%= f.submit "作成" %>
+            <% end %>
+          </div>
           <% @folders.each do |folder| %>
             <tr>
               <td>
@@ -18,21 +24,19 @@
         </tbody>
       </table>
       
-      <div class="new-memo">
-        <%= form_with model: @folder do |f| %>
-          <%= f.label :新規フォルダ %>
-          <%= f.text_field :title %>
-          <%= f.submit "作成" %>
-        <% end %>
-      </div>
-      
     </div>
 
 
     <div class="col-xs-8">
-      <h2 class="text-center">メモ</h2>
 
       <table class="table">
+        
+        <div class="new-memo">
+          <%= link_to new_memo_path do %>
+            <i class="far fa-edit fa-lg" ></i>
+          <% end %>
+        </div>
+
         <thead>
           <tr>
             <td></td>
@@ -56,7 +60,7 @@
             </td>
             <td>
               <strong><%= memo.title.truncate(20) %></strong><br>
-              <%= memo.created_at %>
+              <%= l memo.created_at %>
             </td>
             <td>
               <%= link_to memo_path(memo) do %>
@@ -77,10 +81,6 @@
         <% end %>
         </tbody>
       </table>
-
-      <%= link_to new_memo_path do %>
-        <i class="far fa-edit fa-lg" ></i>
-      <% end %>
 
     </div>
 
