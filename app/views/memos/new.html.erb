@@ -1,11 +1,21 @@
-<h1>メモ追加</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
 
-<%= form_with model: @memo do |f| %>
-  <div><%= f.label :title %></div>
-  <div><%= f.text_field :title %></div>
-  <div><%= f.label :content %></div>
-  <div><%= f.text_area :content %></div>
-  <div><%= f.submit '追加' %></div>
-<% end %>
+      <h1>メモ追加</h1>
 
-<%= link_to '戻る', memos_path %>
+      <%= form_with model: @memo do |f| %>
+        <div><%= f.label :title %></div>
+        <div><%= f.text_field :title %></div>
+        <div><%= f.label :content %></div>
+        <div><%= f.text_area :content %></div>
+        <div><%= f.submit '追加' %></div>
+      <% end %>
+
+      <div class="memo-new-back">
+        <%= link_to '戻る', memos_path %>
+      </div>
+
+    </div>
+  </div>
+</div>

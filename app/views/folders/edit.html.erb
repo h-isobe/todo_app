@@ -1,9 +1,19 @@
-<h1>フォルダ編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
 
-<%= form_with model: @folder do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.submit '変更' %>
-<% end %>
+      <h2>フォルダ編集</h2>
 
-<%= link_to '戻る', :back %>
+        <%= form_with model: @folder do |f| %>
+          <%= f.label :フォルダ名 %>
+          <%= f.text_field :title %>
+          <%= f.submit '変更' %>
+        <% end %>
+
+      <div class="folder-edit-back">
+        <%= link_to '戻る', :back %>
+      </div>
+
+    </div>
+  </div>
+</div>

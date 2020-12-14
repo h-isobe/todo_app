@@ -20,10 +20,12 @@
                   <%= folder.title %>
               </td>
               <td>
-                <%= link_to "編集", edit_folder_path(folder) %>
-              </td>
-              <td>
-                <%= link_to "削除", folder_path(folder), method: :delete, data: {confirm: "本当に消しますか？"} %>
+                <span class="folder-edit">
+                  <%= link_to "編集", edit_folder_path(folder) %>
+                </span>
+                <span class="folder-destroy">
+                  <%= link_to "削除", folder_path(folder), method: :delete, data: {confirm: "本当に消しますか？"} %>
+                </span>
               </td>
             </tr>
           <% end %>
