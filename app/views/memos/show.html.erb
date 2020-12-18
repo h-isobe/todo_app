@@ -1,109 +1,103 @@
-<div class="container">
-  <div class="row">
+<div class="col-xs-2 folder-list">
 
-    <div class="col-xs-2 folder-list">
-
-      <table class="tabel">
-        <tbody>
-          <div class="new-folder">
-            <%= form_with model: @folder do |f| %>
-              <%= f.label :新規フォルダ %>
-              <%= f.text_field :title %>
-              <%= f.submit "作成" %>
-            <% end %>
-          </div>
-          <% @folders.each do |folder| %>
-            <tr>
-              <td>
-                <i class="fas fa-tag"></i>
-                <%= folder.title %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      
-    </div>
-
-    <div class="col-xs-4">
-
-      <table class="table">
-
-        <div class="new-memo">
-          <%= link_to new_memo_path do %>
-            <i class="far fa-edit fa-lg" ></i>
-          <% end %>
-        </div>
-
-        <thead>
-          <tr>
-            <td></td>
-            <td>タイトル</td>
-            <td>内容</td>
-          </tr>
-        </thead>
-        <tbody>
-        <% @memos.each do |memo| %>
-          <tr>
-            <td>
-              <% if memo.checked_by?(memo) %>
-                <%= link_to memo_checks_path(memo), method: :delete do %>
-                  <i class="far fa-check-square"></i>
-                <% end %>
-              <% else %>
-                <%= link_to memo_checks_path(memo), method: :post do %>
-                  <i class="far fa-square"></i>
-                <% end %>
-              <% end %>
-            </td>
-            <td><%= memo.title.truncate(10) %></td>
-            <td>
-              <%= link_to memo_path(memo) do %>
-                <%= memo.content.truncate(20) %>
-              <% end %>
-            </td>
-          </tr>
+  <table class="tabel">
+    <tbody>
+      <div class="new-folder">
+        <%= form_with model: @folder do |f| %>
+          <%= f.label :新規フォルダ %>
+          <%= f.text_field :title %>
+          <%= f.submit "作成" %>
         <% end %>
-        </tbody>
-      </table>
+      </div>
+      <% @folders.each do |folder| %>
+        <tr>
+          <td>
+            <i class="fas fa-tag"></i>
+            <%= folder.title.truncate(10) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>
 
+<div class="col-xs-4">
+
+  <table class="table table-striped">
+
+    <div class="new-memo">
+      <%= link_to new_memo_path do %>
+        <i class="far fa-edit fa-lg" ></i>
+      <% end %>
     </div>
 
-    <div class="col-xs-5">
-
-      <table class="table">
-        <thead>
-          <p class="text-center show-date"><%= l @memo.created_at %></p>
-          <tr>
-            <td>
-              <h4><strong><%= @memo.title %></strong></h4>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @memo.content %></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div class="text-right">
-        <span class="edit_icon">
-          <%= link_to edit_memo_path(@memo) do %>
-            <i class="fas fa-pencil-alt"></i>
+    <thead>
+      <tr>
+        <td></td>
+        <td>タイトル</td>
+        <td>内容</td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td>
+          <% if memo.checked_by?(memo) %>
+            <%= link_to memo_checks_path(memo), method: :delete do %>
+              <i class="far fa-check-square"></i>
+            <% end %>
+          <% else %>
+            <%= link_to memo_checks_path(memo), method: :post do %>
+              <i class="far fa-square"></i>
+            <% end %>
           <% end %>
-        </span>
-        <span class="delete-icon">
-          <%= link_to memo_path(@memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
-            <i class="far fa-trash-alt"></i>
+        </td>
+        <td><%= memo.title.truncate(10) %></td>
+        <td>
+          <%= link_to memo_path(memo) do %>
+            <%= memo.content.truncate(20) %>
           <% end %>
-        </span>
-      </div>
-      
-      <div class="back_button text-left">
-        <%= link_to "戻る", memos_path %>
-      </div>
-    </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
+</div>
+
+<div class="col-xs-5">
+
+  <table class="table">
+    <thead>
+      <p class="text-center show-date"><%= l @memo.created_at %></p>
+      <tr>
+        <td>
+          <h4><strong><%= @memo.title %></strong></h4>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @memo.content %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="text-right">
+    <span class="edit_icon">
+      <%= link_to edit_memo_path(@memo) do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+    </span>
+    <span class="delete-icon">
+      <%= link_to memo_path(@memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </span>
+  </div>
+  
+  <div class="back_button">
+    <%= link_to "戻る", memos_path, class: "btn btn-info" %>
   </div>
 </div>

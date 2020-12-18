@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :memos do
     resource :checks, only: [:create, :destroy]
   end
-  resources :folders
+  resources :memo_folders, :folders
  end

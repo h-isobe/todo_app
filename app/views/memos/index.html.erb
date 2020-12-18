@@ -1,96 +1,88 @@
-<div class="container">
-  <div class="row">
+<div class="col-xs-4 folder-list">
 
-    
-    <div class="col-xs-4 folder-list">
-
-      <table class="tabel">
-        <tbody>
-          <div class="new-folder text-center">
-            <%= form_with model: @folder do |f| %>
-              <%= f.label :新規フォルダ %>
-              <%= f.text_field :title %>
-              <%= f.submit "作成" %>
-            <% end %>
-          </div>
-          <% @folders.each do |folder| %>
-            <tr>
-              <td>
-                <i class="fas fa-tag"></i>
-                  <%= folder.title %>
-              </td>
-              <td>
-                <span class="folder-edit">
-                  <%= link_to "編集", edit_folder_path(folder) %>
-                </span>
-                <span class="folder-destroy">
-                  <%= link_to "削除", folder_path(folder), method: :delete, data: {confirm: "本当に消しますか？"} %>
-                </span>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      
-    </div>
-
-
-    <div class="col-xs-8">
-
-      <table class="table">
-        
-        <div class="new-memo">
-          <%= link_to new_memo_path do %>
-            <i class="far fa-edit fa-lg" ></i>
-          <% end %>
-        </div>
-
-        <thead>
-          <tr>
-            <td></td>
-            <td><strong>タイトル</strong></td>
-            <td><strong>内容</strong></td>
-          </tr>
-        </thead>
-        <tbody>
-        <% @memos.each do |memo| %>
-          <tr>
-            <td>
-              <% if memo.checked_by?(memo) %>
-                <%= link_to memo_checks_path(memo), method: :delete do %>
-                  <i class="far fa-check-square"></i>
-                <% end %>
-              <% else %>
-                <%= link_to memo_checks_path(memo), method: :post do %>
-                  <i class="far fa-square"></i>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <strong><%= memo.title.truncate(20) %></strong><br>
-              <%= l memo.created_at %>
-            </td>
-            <td>
-              <%= link_to memo_path(memo) do %>
-                <%= memo.content.truncate(20) %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to edit_memo_path(memo) do %>
-                <i class="fas fa-pencil-alt"></i>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to memo_path(memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
-                <i class="far fa-trash-alt"></i>
-              <% end %>
-            </td>
-          </tr>
+  <table class="tabel">
+    <tbody>
+      <div class="new-folder text-center">
+        <%= form_with model: @folder do |f| %>
+          <%= f.label :新規フォルダ %>
+          <%= f.text_field :title %>
+          <%= f.submit "作成", class: "btn btn-primary" %>
         <% end %>
-        </tbody>
-      </table>
+      </div>
+      <% @folders.each do |folder| %>
+        <tr>
+          <td>
+            <i class="fas fa-tag"></i>
+              <%= folder.title %>
+          </td>
+          <td>
+            <span class="folder-edit">
+              <%= link_to "編集", edit_folder_path(folder), class: "btn btn-success" %>
+            </span>
+            <span class="folder-destroy">
+              <%= link_to "削除", folder_path(folder), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger" %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>
 
+<div class="col-xs-8">
+
+  <table class="table table-striped">
+    
+    <div class="new-memo">
+      <%= link_to new_memo_path do %>
+        <i class="far fa-edit fa-lg" ></i>
+      <% end %>
     </div>
 
-  </div>
+    <thead>
+      <tr>
+        <td></td>
+        <td><strong>タイトル</strong></td>
+        <td><strong>内容</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td>
+          <% if memo.checked_by?(memo) %>
+            <%= link_to memo_checks_path(memo), method: :delete do %>
+              <i class="far fa-check-square"></i>
+            <% end %>
+          <% else %>
+            <%= link_to memo_checks_path(memo), method: :post do %>
+              <i class="far fa-square"></i>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <strong><%= memo.title.truncate(20) %></strong><br>
+          <%= l memo.created_at %>
+        </td>
+        <td>
+          <%= link_to memo_path(memo) do %>
+            <%= memo.content.truncate(20) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_memo_path(memo) do %>
+            <i class="fas fa-pencil-alt"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to memo_path(memo), method: :delete, data: {confirm: "本当に消しますか？"} do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
 </div>
