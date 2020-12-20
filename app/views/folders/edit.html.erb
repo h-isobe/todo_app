@@ -2,7 +2,7 @@
 
   <h2>フォルダ編集</h2>
 
-  <%= form_with model: @folder do |f| %>
+  <%= form_with model: @folder, local: true do |f| %>
     <%= f.label :フォルダ名 %>
     <%= f.text_field :title %>
     <%= f.submit '変更', class: "btn btn-success" %>

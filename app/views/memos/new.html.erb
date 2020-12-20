@@ -1,15 +1,25 @@
 <div class="col-xs-12 text-center">
 
+  <div class="errors">
+    <%= form_with model: @memo, local: true do |f| %>
+      <% if @memo.errors.any? %>
+        <%= @memo.errors.count %>件のエラーが発生しました
+        <% @memo.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
   <h1>メモ追加</h1>
 
-  <%= form_with model: @memo do |f| %>
+  <%= form_with model: @memo, local: true  do |f| %>
 
     <div class="field row">
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control input-lg" %>
     </div>
     
-
     <div class="field row">
       <%= f.label :content %>
       <%= f.text_area :content, class: "form-control input-lg" %>

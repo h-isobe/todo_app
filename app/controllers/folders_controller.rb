@@ -1,7 +1,8 @@
 class FoldersController < ApplicationController
 
   def create
-    @folder = Folder.create(folder_params)
+    @folder = Folder.new(folder_params)
+    @folder.save
     redirect_to memos_path
   end
 

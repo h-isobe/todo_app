@@ -3,7 +3,7 @@
   <table class="tabel">
     <tbody>
       <div class="new-folder text-center">
-        <%= form_with model: @folder do |f| %>
+        <%= form_with model: @folder, local: true do |f| %>
           <%= f.label :新規フォルダ %>
           <%= f.text_field :title %>
           <%= f.submit "作成", class: "btn btn-primary" %>

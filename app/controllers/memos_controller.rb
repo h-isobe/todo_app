@@ -18,8 +18,13 @@ class MemosController < ApplicationController
   end
 
   def create
-    @memo = Memo.create(memo_params)
-    redirect_to memos_path
+    @memo = Memo.new(memo_params)
+    if @memo.save
+      redirect_to memos_path
+      flash[:notice] = "追加しました"
+    else
+      render :new
+    end
   end
 
   def edit
@@ -28,8 +33,12 @@ class MemosController < ApplicationController
 
   def update
     @memo = Memo.find(params[:id])
-    @memo.update(memo_params)
-    redirect_to memos_path
+    if @memo.update(memo_params)
+      redirect_to memos_path
+      flash[:notice] = "更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
