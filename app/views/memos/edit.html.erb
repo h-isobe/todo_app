@@ -3,11 +3,27 @@
   <h1>メモ編集</h1>
 
   <%= form_with model: @memo do |f| %>
-    <div><%= f.label :title %></div>
-    <div><%= f.text_field :title %></div>
-    <div><%= f.label :content %></div>
-    <div><%= f.text_area :content, :size => '45×45' %></div>
-    <div><%= f.submit '編集', class: "btn btn-success" %></div>
+
+    <div class="field row">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control input-lg" %>
+    </div>
+    
+
+    <div class="field row">
+      <%= f.label :content %>
+      <%= f.text_area :content, class: "form-control input-lg" %>
+    </div>
+    
+    <div class="field row">
+      <%= f.label :画像選択 %>
+      <%= f.attachment_field :image %>
+    </div>
+
+    <div class="field row">
+      <%= f.submit '追加', class: "btn btn-primary" %>
+    </div>
+
   <% end %>
 
   <div class="memo-edit-back">

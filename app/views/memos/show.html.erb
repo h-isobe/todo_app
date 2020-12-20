@@ -81,6 +81,9 @@
       <tr>
         <td><%= @memo.content %></td>
       </tr>
+      <tr>
+        <td><%= attachment_image_tag @memo, :image, format: 'jpeg', size: "200x200" %></td>
+      </tr>
     </tbody>
   </table>
   
